@@ -1,19 +1,27 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, SafeAreaView, Platform, View } from "react-native";
+import Header from "./src/components/shared/header/Header";
+import TaskContainer from "./src/components/tasksEpic/TaskContainer";
+import { Provider } from "react-redux";
+import store from "./src/redux/store";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <Provider store={store}>
+      <SafeAreaView style={styles.container}>
+        <Header />
+        <TaskContainer />
+      </SafeAreaView>
+    </Provider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    paddingTop: Platform.OS === "android" ? 25 : 0,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
 });
